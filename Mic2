@@ -1,0 +1,27 @@
+// Simulação de uma CPU — baseada nas ideias do Tanenbaum
+
+void loadControlMicroprogram();     // Carrega as instruções internas que mandam na CPU
+void loadProgram(const char *program); // Coloca o programa principal na memória
+void showProcesses();               // Mostra os programas que estão rodando
+void decodeMicroinstruction();      // Lê e entende a microinstrução atual
+void setBusB();                     // Envia dados pelo barramento B (um tipo de "fio" interno)
+void runALUOperation();             // Faz uma conta ou comparação na ALU
+void setBusC();                     // Manda o resultado da operação para outro registrador
+void runMemoryOperation();          // Lê ou escreve dados na memória
+void jumpInstruction();             // Faz o programa "pular" pra outro ponto (mudança de endereço)
+void printBinary(void* value, int type); // Mostra um valor em formato binário (0 e 1 )
+
+
+
+| Função                      | O que faz (explicado de forma simples)                                                                                                    | Baseado em Tanenbaum                    |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| `loadControlMicroprogram()` | Aqui a CPU carrega um conjunto de “regras internas” (microinstruções) que dizem o que fazer a cada passo. É tipo o manual secreto da CPU. | Cap. 4 – Unidade de Controle            |
+| `loadProgram()`             | Essa função coloca o programa principal (aquele que o usuário quer rodar) dentro da memória, pra que a CPU possa achar e executar.        | Cap. 3 – Memória do Computador          |
+| `showProcesses()`           | Mostra quais programas estão carregados ou sendo executados — tipo uma lista de tarefas.                                                  | Cap. 1 – Visão Geral do Sistema         |
+| `decodeMicroinstruction()`  | Aqui a CPU interpreta a microinstrução pra saber qual operação deve fazer (ex: somar, mover, ler da memória etc.).                        | Cap. 4 – Decodificação de Instruções    |
+| `setBusB()`                 | O “barramento B” é como um fio interno que leva dados dentro da CPU. Essa função manda um valor por esse caminho.                         | Cap. 4 – Barramentos da CPU             |
+| `runALUOperation()`         | A ALU é o “cérebro da conta”. Aqui acontecem operações matemáticas e lógicas, tipo somar, subtrair ou comparar.                           | Cap. 2 – Unidade Lógica e Aritmética    |
+| `setBusC()`                 | Depois que a ALU faz o cálculo, o resultado é enviado de volta por outro caminho — o “barramento C”.                                      | Cap. 4 – Caminho de Dados               |
+| `runMemoryOperation()`      | A CPU lê ou grava informações na memória (como pegar dados ou salvar resultados).                                                         | Cap. 3 – Leitura e Escrita na Memória   |
+| `jumpInstruction()`         | Faz o programa “pular” para outro ponto. É assim que o computador toma decisões (ex: “se for verdadeiro, vai pra lá”).                    | Cap. 4 – Controle de Fluxo              |
+| `printBinary()`             | Mostra números em binário (só 0 e 1), o idioma que o computador entende.                                                                  | Cap. 1 – Representação Binária de Dados |
